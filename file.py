@@ -29,20 +29,22 @@ if __name__ == "__main__":
       l[i]=l[i][1:]
   d={}
   for i in range(len(l)):
-    d[l[i][0]] = l[i][1:]
+    d[l[i][1]] = l[i][:1]+l[i][2:]
   with open('new_data.json', 'w') as file:
     json.dump(d,file)
   
   d = {}
-  a=[]
+  a = []
+  k=1
   for i in l:
-      d['sl_no'] = i[0]
+      d['sl_no'] = k
       d['name'] = i[1]
       d['c_case_n'] = i[2]
       d['c_case_i'] = i[3]
       d['cured'] = i[4]
       d['death'] = i[5]
       a.append(d.copy())
+      k+=1
   with open('test.json', 'w') as file:
     json.dump(a, file)
 
@@ -56,14 +58,13 @@ if __name__ == "__main__":
 
       # update confirmed case
       a = data['features'][i]['properties']["confirmed_case"]
-      b = xx.get(str(data['features'][i]['properties']["id"]))
+      b = xx.get(str(data['features'][i]['properties']["name"]))
       if b:
-        if a != b[1]:
           data['features'][i]['properties']["confirmed_case"]= b[1]
       
       # update death
       c =data['features'][i]['properties']["Death"]
-      d = xx.get(str(data['features'][i]['properties']["id"]))
+      d = xx.get(str(data['features'][i]['properties']["name"]))
       if d:
         if c !=d[4]:
           data['features'][i]['properties']["Death"]=d[4]
