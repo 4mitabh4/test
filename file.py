@@ -32,6 +32,19 @@ if __name__ == "__main__":
     d[l[i][0]] = l[i][1:]
   with open('new_data.json', 'w') as file:
     json.dump(d,file)
+  
+  d = {}
+  a=[]
+  for i in l:
+      d['sl_no'] = i[0]
+      d['name'] = i[1]
+      d['c_case_n'] = i[2]
+      d['c_case_i'] = i[3]
+      d['cured'] = i[4]
+      d['death'] = i[5]
+      a.append(d.copy())
+  with open('test.json', 'w') as file:
+    json.dump(a, file)
 
   # data collection part ends
   # data transfer part starts 
